@@ -10,6 +10,7 @@ python = "^3.7"
 PyYAML = "^5.3.1"
 click = "^7.1.2"
 jsonpickle = "^1.4.1"
+watchdog = "^1.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.1"
@@ -33,7 +34,7 @@ safety = "^1.9.0"
 codecov = "^2.1.10"
 
 [tool.poetry.scripts]
-sprint_datapusher = "sprint_datapusher.datapusher:main"
+sprint_datapusher = "sprint_datapusher.datapusher:cli"
 
 
 [tool.coverage.paths]
@@ -45,7 +46,7 @@ source = ["sprint_datapusher"]
 
 [tool.coverage.report]
 show_missing = true
-fail_under = 100
+fail_under = 70
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
