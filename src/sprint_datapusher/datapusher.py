@@ -15,8 +15,8 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.option(
     "-d",
     "--directory",
-    default=".",
-    help="The directory to watch",
+    default=os.getcwd(),
+    help="Relative path to the directory to watch",
     show_default=True,
     type=click.Path(
         exists=True,
@@ -30,9 +30,8 @@ def main(url: str, directory: Any) -> None:
     \f
     Args:
         url: the URL to a webserver exposing an endpoint accepting your json.
-        directory: the directory to watch
+        directory: relative path to the directory to watch
     """  # noqa: D301
-    # Add a trailing slash to directory if not there:
-    directory = os.path.join(directory, "")
-    click.echo(f"Watching directory {directory}")
+    click.echo(f"\nWorking directory {os.getcwd()}")
+    click.echo(f"Watching directory {os.path.join(os.getcwd(), directory)}")
     click.echo(f"Sending data to webserver at {url}")

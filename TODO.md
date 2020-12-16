@@ -1,0 +1,1 @@
+- [ ] Legg til ping sub-commando som sjekker om webserver er operativ.
