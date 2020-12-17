@@ -20,23 +20,28 @@ def fake_loop_action() -> None:
 
 
 def test_FileSystemMonitor_with_url_arguments_succeds(runner: CliRunner) -> None:
-    """Should return exit_code 0."""
+    """Should not raise any Exceptions."""
     url = "http://example.com"
-    monitor = FileSystemMonitor(url, os.getcwd())
-    monitor.start(loop_action=fake_loop_action)
-
-    pass
+    try:
+        monitor = FileSystemMonitor(url, os.getcwd())
+        monitor.start(loop_action=fake_loop_action)
+    except Exception:
+        pytest.fail("Unexpected Exception")
 
 
 def test_cli_with_url_arguments_and_directory_succeds(runner: CliRunner) -> None:
-    """Should return exit_code 0."""
-    directory = "tests/files"
+    """Should not raise any Exceptions."""
+    directory = "directory_to_be_monitored"
     url = "http://example.com"
 
-    monitor = FileSystemMonitor(url, directory)
-    monitor.start(loop_action=fake_loop_action)
+    with runner.isolated_filesystem():
+        os.makedirs(directory)
 
-    pass
+        try:
+            monitor = FileSystemMonitor(url, directory)
+            monitor.start(loop_action=fake_loop_action)
+        except Exception:
+            pytest.fail("Unexpected Exception")
 
 
 # --- Bad cases ---
