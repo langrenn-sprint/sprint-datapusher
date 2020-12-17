@@ -1,3 +1,3 @@
 - [ ] Legg til ping sub-commando som sjekker om webserver er operativ.
-- [ ] Bruk pandas til å lese csv og transformere til json
+- [x] Bruk pandas til å lese csv og transformere til json
 - [ ] Lag tester som simulerer filsystem hendingar og test på resultatet av disse

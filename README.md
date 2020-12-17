@@ -5,16 +5,6 @@ Overvåker folder og sender data i nye/endrede filer som json til webserver.
 ## Overvåke folder for endringer i filer
 TBD
 
-## Eksempel på kode som leser fil og sender data
-```
-import pandas as pd
-df = pd.read_csv("/home/stigbd/src/heming-langrenn/sprint-excel/test-data/Klasser.csv", sep=";")
-# konvert dataframe (df) til datamodell (json)
-...
-# send data til webserver i en post-reqeust
-...
-```
-
 ## Development
 ### Requirements
 - [pyenv](https://github.com/pyenv/pyenv-installer)
