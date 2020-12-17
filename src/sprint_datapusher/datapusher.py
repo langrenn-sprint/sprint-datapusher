@@ -111,11 +111,19 @@ class EventHandler(FileSystemEventHandler):
 def _convert_and_push_data(url: str, src_path: Any) -> None:
     # read the csv into a dataframe:
     df = pd.read_csv(src_path, sep=";")
+
+    # TODO this code must be adapted to different types of files
+    # filter out irrelevant data:
+    df = df.iloc[1:]  # drops the first row
+    df.dropna(subset=["Klasse"], inplace=True)  # drops all rows with no value in Klasse
+    df.dropna(how="all", axis="columns", inplace=True)  # drops columns with no values
+    df.reset_index(drop=True, inplace=True)  # resets index
+    # set the url for this object
+    url = f"{url}/klasser"
+    # --- END TODO ---
+
     # convert dataframe to json
     body = df.to_json(orient="records")
-    # send raw json to webserver in post-request:
-    # todo try to do this in fire-and-forget style:
-    url = f"{url}/klasser"
 
     try:
         response = requests.post(url, json=body)
