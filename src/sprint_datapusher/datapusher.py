@@ -110,7 +110,7 @@ class EventHandler(FileSystemEventHandler):
 
 def _convert_and_push_data(url: str, src_path: Any) -> None:
     # read the csv into a dataframe:
-    df = pd.read_csv(src_path, sep=";")
+    df = pd.read_csv(src_path, sep=";", encoding="utf-8")
 
     # TODO this code must be adapted to different types of files
     # filter out irrelevant data:
@@ -123,12 +123,14 @@ def _convert_and_push_data(url: str, src_path: Any) -> None:
     # --- END TODO ---
 
     # convert dataframe to json
-    body = df.to_json(orient="records")
-
+    logging.info(f"df before converting to json {df}")
+    body = df.to_json(orient="records", force_ascii=True)
+    headers = {"content-type": "application/json; charset=utf-8"}
+    logging.info(f"sending body {body}")
     try:
-        response = requests.post(url, json=body)
+        response = requests.post(url, headers=headers, data=body)
         if response.status_code == 201:
-            logging.info(f"Converted and pushed {src_path}")
+            logging.info(f"Converted and pushed {src_path} -> {response.status_code}")
         else:
             logging.error(f"got status {response.status_code}")
     except Exception as e:
