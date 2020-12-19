@@ -13,6 +13,7 @@ jsonpickle = "^1.4.1"
 watchdog = "^1.0.1"
 pandas = "^1.1.5"
 requests = "^2.25.1"
+python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.1.1"

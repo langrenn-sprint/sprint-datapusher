@@ -5,6 +5,7 @@ import time
 from typing import Any
 
 import click
+from dotenv import load_dotenv
 import pandas as pd
 import requests
 from watchdog.events import FileSystemEvent, FileSystemEventHandler
@@ -13,8 +14,11 @@ from watchdog.observers import Observer
 from . import __version__
 
 CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
+load_dotenv()
+LOGGING_LEVEL = os.getenv("LOGGING_LEVEL", "INFO")
+
 logging.basicConfig(
-    level=logging.INFO,
+    level=LOGGING_LEVEL,
     format="%(asctime)s - %(message)s",
     datefmt="%Y-%m-%d %H:%M:%S",
 )
@@ -45,12 +49,35 @@ def cli(url: str, directory: Any) -> None:
         url: the URL to a webserver exposing an endpoint accepting your json.
         directory: relative path to the directory to watch
     """  # noqa: D301
-    click.echo(f"\nWorking directory {os.getcwd()}")
-    click.echo(f"Watching directory {os.path.join(os.getcwd(), directory)}")
-    click.echo(f"Sending data to webserver at {url}")
+    # Check if webserver is alive:
+    if _webserver_allive(url):
+        click.echo(f"\nWorking directory {os.getcwd()}")
+        click.echo(f"Watching directory {os.path.join(os.getcwd(), directory)}")
+        click.echo(f"Sending data to webserver at {url}")
+    else:
+        exit(2)
 
     monitor = FileSystemMonitor(directory=directory, url=url)
     monitor.start(loop_action=lambda: time.sleep(1))
+
+    click.echo("Bye!\n")
+
+
+def _webserver_allive(url: str) -> bool:
+    try:
+        _url = f"{url}/ping"
+        logging.debug(f"Trying to ping webserver at {url}")
+        response = requests.get(_url)
+        if response.status_code == 200:
+            logging.info(f"Connected to {url}")
+            return True
+        else:
+            logging.error(
+                f"Webserver respondend with not ok status_code: {response.status_code}"
+            )
+    except Exception:
+        logging.error("Webserver not available. Exiting....")
+    return False
 
 
 class FileSystemMonitor:
@@ -110,28 +137,32 @@ class EventHandler(FileSystemEventHandler):
 
 def _convert_and_push_data(url: str, src_path: Any) -> None:
     # read the csv into a dataframe:
-    df = pd.read_csv(src_path, sep=";", encoding="utf-8")
 
+    url = f"{url}/klasser"
+    body = _convert_csv_to_json(src_path)
+    headers = {"content-type": "application/json; charset=utf-8"}
+    logging.debug(f"sending body {body}")
+    try:
+        response = requests.post(url, headers=headers, data=body)
+        if response.status_code == 201:
+            logging.debug(f"Converted and pushed {src_path} -> {response.status_code}")
+        else:
+            logging.error(f"got status {response.status_code}")
+    except Exception as e:
+        logging.error(f"got exceptions {e}")
+
+
+def _convert_csv_to_json(src_path: str) -> str:
     # TODO this code must be adapted to different types of files
+    df = pd.read_csv(src_path, sep=";", encoding="utf-8")
     # filter out irrelevant data:
     df = df.iloc[1:]  # drops the first row
     df.dropna(subset=["Klasse"], inplace=True)  # drops all rows with no value in Klasse
     df.dropna(how="all", axis="columns", inplace=True)  # drops columns with no values
     df.reset_index(drop=True, inplace=True)  # resets index
     # set the url for this object
-    url = f"{url}/klasser"
     # --- END TODO ---
 
     # convert dataframe to json
-    logging.info(f"df before converting to json {df}")
-    body = df.to_json(orient="records", force_ascii=True)
-    headers = {"content-type": "application/json; charset=utf-8"}
-    logging.info(f"sending body {body}")
-    try:
-        response = requests.post(url, headers=headers, data=body)
-        if response.status_code == 201:
-            logging.info(f"Converted and pushed {src_path} -> {response.status_code}")
-        else:
-            logging.error(f"got status {response.status_code}")
-    except Exception as e:
-        logging.error(f"got exceptions {e}")
+    logging.debug(f"df before converting to json {df}")
+    return df.to_json(orient="records", force_ascii=True)
