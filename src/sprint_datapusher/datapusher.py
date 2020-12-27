@@ -138,8 +138,16 @@ class EventHandler(FileSystemEventHandler):
 def _convert_and_push_data(url: str, src_path: Any) -> None:
     # read the csv into a dataframe:
 
-    url = f"{url}/klasser"
-    body = _convert_csv_to_json(src_path)
+    datafile_type = ""
+    if "Klasser" in src_path:
+        url = f"{url}/klasser"
+        datafile_type = "Klasser"
+    else:
+        url = f"{url}/deltakere"
+        datafile_type = "Deltakere"
+    logging.info(f"Server url {url} - datafile {datafile_type}")
+
+    body = _convert_csv_to_json(src_path, datafile_type)
     headers = {"content-type": "application/json; charset=utf-8"}
     logging.debug(f"sending body {body}")
     try:
@@ -152,12 +160,21 @@ def _convert_and_push_data(url: str, src_path: Any) -> None:
         logging.error(f"got exceptions {e}")
 
 
-def _convert_csv_to_json(src_path: str) -> str:
-    # TODO this code must be adapted to different types of files
+def _convert_csv_to_json(src_path: str, datafile_type: str) -> str:
+
     df = pd.read_csv(src_path, sep=";", encoding="utf-8")
     # filter out irrelevant data:
+
+    # handle different file types - TODO add all
+    mandatory_field = ""
+    if datafile_type == "Klasser" :
+        mandatory_field = "Klasse"
+    else:
+        mandatory_field = "Startnr"
+    logging.info(f"Mandatory field {mandatory_field}")
+
     df = df.iloc[1:]  # drops the first row
-    df.dropna(subset=["Klasse"], inplace=True)  # drops all rows with no value in Klasse
+    df.dropna(subset={mandatory_field}, inplace=True)  # drops all rows with no value in Klasse
     df.dropna(how="all", axis="columns", inplace=True)  # drops columns with no values
     df.reset_index(drop=True, inplace=True)  # resets index
     # set the url for this object
