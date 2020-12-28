@@ -1,0 +1,50 @@
+[
+  {
+    "Startnr": 1,
+    "Navn": "Anders Håvard Larsen",
+    "Klubb": "Kjelsås IL",
+    "ÅrsKlasse": "Menn junior",
+    "Krets": "Oslo",
+    "Løpsklasse": "MJ"
+  },
+  {
+    "Startnr": 2,
+    "Navn": "Joakim Eriksrud Karlsen",
+    "Klubb": "Rustad IL",
+    "ÅrsKlasse": "Menn junior",
+    "Krets": "Oslo",
+    "Løpsklasse": "MJ"
+  },
+  {
+    "Startnr": 67,
+    "Navn": "Fredrick Aarstad",
+    "Klubb": "Strømmen og Lillestrøm Skiklubb",
+    "ÅrsKlasse": "G 16 år",
+    "Krets": "Akershus",
+    "Løpsklasse": "G16"
+  },
+  {
+    "Startnr": 68,
+    "Navn": "Emil Nilsen",
+    "Klubb": "Fet Skiklubb",
+    "ÅrsKlasse": "G 16 år",
+    "Krets": "Akershus",
+    "Løpsklasse": "G16"
+  },
+  {
+    "Startnr": 69,
+    "Navn": "Jakob Gustav Dyran Nordby",
+    "Klubb": "Røa IL",
+    "ÅrsKlasse": "G 16 år",
+    "Krets": "Oslo",
+    "Løpsklasse": "G16"
+  },
+  {
+    "Startnr": 655,
+    "Navn": "Victoria Kjølseth",
+    "Klubb": "Kjelsås IL",
+    "ÅrsKlasse": "J 12 år",
+    "Krets": "Oslo",
+    "Løpsklasse": "J12"
+  }
+]

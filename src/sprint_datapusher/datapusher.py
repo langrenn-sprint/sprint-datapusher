@@ -125,63 +125,74 @@ class EventHandler(FileSystemEventHandler):
         super(EventHandler, self).on_created(event)
 
         if not event.is_directory:
-            _convert_and_push_data(self.url, event.src_path)
+            convert_and_push_data(self.url, event.src_path)
 
     def on_modified(self, event: FileSystemEvent) -> None:
         """Handle file modification events."""
         super(EventHandler, self).on_modified(event)
 
         if not event.is_directory:
-            _convert_and_push_data(self.url, event.src_path)
+            convert_and_push_data(self.url, event.src_path)
 
 
-def _convert_and_push_data(url: str, src_path: Any) -> None:
-    # read the csv into a dataframe:
-
+def convert_and_push_data(url: str, src_path: Any) -> None:
+    """Convert file content to json and push to webserver at url."""
     datafile_type = ""
-    if "Klasser" in src_path:
-        url = f"{url}/klasser"
-        datafile_type = "Klasser"
+    _url = None
+    if src_path.split("/")[-1] == "Klasser.csv":
+        _url = f"{url}/klasser"
+        datafile_type = "klasser"
+    if "Start.csv" in src_path.split("/")[-1]:
+        _url = f"{url}/start"
+        datafile_type = "start"
+    if src_path.split("/")[-1] == "Deltakere.csv":
+        _url = f"{url}/deltakere"
+        datafile_type = "deltakere"
+    logging.debug(f"Server url: {_url} - datafile: {datafile_type}")
+
+    if _url:
+        body = convert_csv_to_json(src_path, datafile_type)
+        headers = {"content-type": "application/json; charset=utf-8"}
+        logging.debug(f"sending body {body}")
+        try:
+            response = requests.post(_url, headers=headers, data=body)
+            if response.status_code == 201:
+                logging.debug(
+                    f"Converted and pushed {src_path} -> {response.status_code}"
+                )
+            else:
+                logging.error(f"got status {response.status_code}")
+        except Exception as e:
+            logging.error(f"got exceptions {e}")
     else:
-        url = f"{url}/deltakere"
-        datafile_type = "Deltakere"
-    logging.info(f"Server url {url} - datafile {datafile_type}")
-
-    body = _convert_csv_to_json(src_path, datafile_type)
-    headers = {"content-type": "application/json; charset=utf-8"}
-    logging.debug(f"sending body {body}")
-    try:
-        response = requests.post(url, headers=headers, data=body)
-        if response.status_code == 201:
-            logging.debug(f"Converted and pushed {src_path} -> {response.status_code}")
-        else:
-            logging.error(f"got status {response.status_code}")
-    except Exception as e:
-        logging.error(f"got exceptions {e}")
+        logging.info(f"Ignoring event on file {src_path}")
 
 
-def _convert_csv_to_json(src_path: str, datafile_type: str) -> str:
-
+def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
+    """Convert content of csv file to json."""
+    # read the csv into a dataframe:
     df = pd.read_csv(src_path, sep=";", encoding="utf-8")
-    # filter out irrelevant data:
+    # Klasser.csv:
+    if datafile_type == "klasser":
+        # drops the first row:
+        df = df.iloc[1:]
+        # drop all rows with no value in Klasse:
+        df.dropna(subset=["Klasse"], inplace=True)
+    # Startlists:
+    if datafile_type == "start":
+        # drops the first row:
+        df = df.iloc[1:]
+    # deltakerliste:
+    if datafile_type == "deltakere":
+        # drops the first row:
+        df = df.iloc[1:]
+        # drop all rows with no value in Klasse:
+        df.dropna(subset=["Startnr"], inplace=True)
 
-    # handle different file types - TODO add all
-    mandatory_field = ""
-    if "Klasser" in datafile_type:
-        mandatory_field = "Klasse"
-    else:
-        mandatory_field = "Startnr"
-    logging.info(f"Mandatory field {mandatory_field}")
-
-    df = df.iloc[1:]  # drops the first row
-    df.dropna(
-        subset={mandatory_field}, inplace=True
-    )  # drops all rows with no value in Klasse
-    df.dropna(how="all", axis="columns", inplace=True)  # drops columns with no values
-    df.reset_index(drop=True, inplace=True)  # resets index
-    # set the url for this object
-    # --- END TODO ---
-
-    # convert dataframe to json
-    logging.debug(f"df before converting to json {df}")
+    # For all types of files:
+    # drop columns with no values:
+    df.dropna(how="all", axis="columns", inplace=True)
+    # reset index:
+    df.reset_index(drop=True, inplace=True)
+    # convert dataframe to json and return:
     return df.to_json(orient="records", force_ascii=True)

@@ -1,0 +1,149 @@
+[
+  {
+    "Klasse": "Menn junior",
+    "Løpsklasse": "MJ",
+    "Rekkefølge": 1,
+    "Row Labels": "F07",
+    "Antall av Løpsklasse": 9
+  },
+  {
+    "Klasse": "Kvinner junior",
+    "Løpsklasse": "KJ",
+    "Rekkefølge": 2,
+    "Row Labels": "G08",
+    "Antall av Løpsklasse": 21
+  },
+  {
+    "Klasse": "G 16 år",
+    "Løpsklasse": "G16",
+    "Rekkefølge": 3,
+    "Row Labels": "G09",
+    "Antall av Løpsklasse": 29
+  },
+  {
+    "Klasse": "J 16 år",
+    "Løpsklasse": "J16",
+    "Rekkefølge": 4,
+    "Row Labels": "G10",
+    "Antall av Løpsklasse": 19
+  },
+  {
+    "Klasse": "G 15 år",
+    "Løpsklasse": "G15",
+    "Rekkefølge": 5,
+    "Row Labels": "G11",
+    "Antall av Løpsklasse": 47
+  },
+  {
+    "Klasse": "J 15 år",
+    "Løpsklasse": "J15",
+    "Rekkefølge": 6,
+    "Row Labels": "G12",
+    "Antall av Løpsklasse": 38
+  },
+  {
+    "Klasse": "G 14 år",
+    "Løpsklasse": "G14",
+    "Rekkefølge": 7,
+    "Row Labels": "G13",
+    "Antall av Løpsklasse": 39
+  },
+  {
+    "Klasse": "J 14 år",
+    "Løpsklasse": "J14",
+    "Rekkefølge": 8,
+    "Row Labels": "G14",
+    "Antall av Løpsklasse": 42
+  },
+  {
+    "Klasse": "G 13 år",
+    "Løpsklasse": "G13",
+    "Rekkefølge": 9,
+    "Row Labels": "G15",
+    "Antall av Løpsklasse": 64
+  },
+  {
+    "Klasse": "J 13 år",
+    "Løpsklasse": "J13",
+    "Rekkefølge": 10,
+    "Row Labels": "G16",
+    "Antall av Løpsklasse": 57
+  },
+  {
+    "Klasse": "G 12 år",
+    "Løpsklasse": "G12",
+    "Rekkefølge": 11,
+    "Row Labels": "J08",
+    "Antall av Løpsklasse": 7
+  },
+  {
+    "Klasse": "J 12 år",
+    "Løpsklasse": "J12",
+    "Rekkefølge": 12,
+    "Row Labels": "J09",
+    "Antall av Løpsklasse": 22
+  },
+  {
+    "Klasse": "G 11 år",
+    "Løpsklasse": "G11",
+    "Rekkefølge": 13,
+    "Row Labels": "J10",
+    "Antall av Løpsklasse": 20
+  },
+  {
+    "Klasse": "J 11 år",
+    "Løpsklasse": "J11",
+    "Rekkefølge": 14,
+    "Row Labels": "J11",
+    "Antall av Løpsklasse": 42
+  },
+  {
+    "Klasse": "G 10 år",
+    "Løpsklasse": "G10",
+    "Rekkefølge": 15,
+    "Row Labels": "J12",
+    "Antall av Løpsklasse": 30
+  },
+  {
+    "Klasse": "J 10 år",
+    "Løpsklasse": "J10",
+    "Rekkefølge": 16,
+    "Row Labels": "J13",
+    "Antall av Løpsklasse": 26
+  },
+  {
+    "Klasse": "G 9 år",
+    "Løpsklasse": "G09",
+    "Rekkefølge": 17,
+    "Row Labels": "J14",
+    "Antall av Løpsklasse": 44
+  },
+  {
+    "Klasse": "J 9 år",
+    "Løpsklasse": "J09",
+    "Rekkefølge": 18,
+    "Row Labels": "J15",
+    "Antall av Løpsklasse": 34
+  },
+  {
+    "Klasse": "G 8 år",
+    "Løpsklasse": "G08",
+    "Rekkefølge": 19,
+    "Row Labels": "J16",
+    "Antall av Løpsklasse": 41
+  },
+  {
+    "Klasse": "J 8 år",
+    "Løpsklasse": "J08",
+    "Rekkefølge": 20,
+    "Row Labels": "KJ",
+    "Antall av Løpsklasse": 9
+  },
+  {
+    "Klasse": "Felles 7 år",
+    "Løpsklasse": "F07",
+    "Rekkefølge": 21,
+    "Row Labels": "MJ",
+    "Antall av Løpsklasse": 16
+  }
+]
