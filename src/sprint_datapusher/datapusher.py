@@ -167,14 +167,16 @@ def _convert_csv_to_json(src_path: str, datafile_type: str) -> str:
 
     # handle different file types - TODO add all
     mandatory_field = ""
-    if datafile_type == "Klasser" :
+    if "Klasser" in datafile_type:
         mandatory_field = "Klasse"
     else:
         mandatory_field = "Startnr"
     logging.info(f"Mandatory field {mandatory_field}")
 
     df = df.iloc[1:]  # drops the first row
-    df.dropna(subset={mandatory_field}, inplace=True)  # drops all rows with no value in Klasse
+    df.dropna(
+        subset={mandatory_field}, inplace=True
+    )  # drops all rows with no value in Klasse
     df.dropna(how="all", axis="columns", inplace=True)  # drops columns with no values
     df.reset_index(drop=True, inplace=True)  # resets index
     # set the url for this object
