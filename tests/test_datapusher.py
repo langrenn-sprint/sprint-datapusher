@@ -57,7 +57,6 @@ def test_convert_Klasser_to_json() -> None:
     assert ddiff == {}
 
 
-@pytest.mark.skip(reason="no way of currently testing this")
 def test_convert_Start_to_json() -> None:
     """Should return correct json-representation of startlist."""
     klasser_json = convert_csv_to_json("tests/files/G11KvartStart.csv", "start")

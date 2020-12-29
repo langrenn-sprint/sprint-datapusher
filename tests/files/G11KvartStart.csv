@@ -1,75 +1,40 @@
 ﻿G11;Kvartfinale Startliste;;Start;;0;G11;Kvartfinale Resultater
 KA1;;G11KA1;0,602777777777777;;;KA1;
-Pos;Nr;Navn ;Klubb;S;Reskode;Plass;Videre til
-1;414;Taiyo Fuseya Skjærven;Rustad IL;;;1;SA1-1
-2;415;Aksel Lied-Storstenvik;Kjelsås IL;;;2;SA1-3
-3;416;Andreas Heggelund Dahl;Bækkelagets SK;;;3;SA1-5
-4;417;Theodor Owe;Kjelsås IL;;;4;SA1-7
-5;418;Erik Skjellevik Innselset;Kjelsås IL;;;5;SC1-1
-6;419;Aleksander Tronsmo-Oraug;Kjelsås IL;;;6;SC1-3
-7;420;Samuel Paul Sammut;Heming, IL;;;7;SC1-5
-8;421;Ingmar Dyrkorn Waage;Kjelsås IL;;;8;SC1-7
-9;;-;-;;;9;
+Heat;Pos;Nr;Navn ;Klubb;S;Reskode;Plass;Videre til
+G11KA1;1;414;Taiyo Fuseya Skjærven;Rustad IL;;;1;SA1-1
+G11KA1;2;415;Aksel Lied-Storstenvik;Kjelsås IL;;;2;SA1-3
+G11KA1;3;416;Andreas Heggelund Dahl;Bækkelagets SK;;;3;SA1-5
+G11KA1;4;417;Theodor Owe;Kjelsås IL;;;4;SA1-7
+G11KA1;5;418;Erik Skjellevik Innselset;Kjelsås IL;;;5;SC1-1
+G11KA1;6;419;Aleksander Tronsmo-Oraug;Kjelsås IL;;;6;SC1-3
+G11KA1;7;420;Samuel Paul Sammut;Heming, IL;;;7;SC1-5
+G11KA1;8;421;Ingmar Dyrkorn Waage;Kjelsås IL;;;8;SC1-7
+G11KA1;9;;-;-;;;9;
 ;;;;;;;
 KA2;;G11KA2;0,604166666666666;;;KA2;
-Pos;Nr;Navn ;Klubb;;Reskode;Plass;Videre til
-1;422;Henrik Fossland Riise-Hanssen;Kjelsås IL;;;1;SA1-2
-2;423;Magnus Grundt Grossmann;Kjelsås IL;;;2;SA1-4
-3;424;Nikolai Ringvold Bakke;Kjelsås IL;;;3;SA1-6
-4;425;Elias Wiig Boije;Bækkelagets SK;;;4;SA1-8
-5;426;Axel Kristian Trovåg Wedum;Lyn Ski;;;5;SC2-1
-6;427;Håkon Botten;Kjelsås IL;;;6;SC2-3
-7;428;Rafi Leonel Rytter;Koll, IL;;;7;SC2-5
-8;429;Benjamin Olav Sammut;Heming, IL;;;8;SC2-7
-9;;-;-;;;9;
+Heat;Pos;Nr;Navn ;Klubb;;Reskode;Plass;Videre til
+G11KA2;1;422;Henrik Fossland Riise-Hanssen;Kjelsås IL;;;1;SA1-2
+G11KA2;2;423;Magnus Grundt Grossmann;Kjelsås IL;;;2;SA1-4
+G11KA2;3;424;Nikolai Ringvold Bakke;Kjelsås IL;;;3;SA1-6
+G11KA2;4;425;Elias Wiig Boije;Bækkelagets SK;;;4;SA1-8
+G11KA2;5;426;Axel Kristian Trovåg Wedum;Lyn Ski;;;5;SC2-1
+G11KA2;6;427;Håkon Botten;Kjelsås IL;;;6;SC2-3
+G11KA2;7;428;Rafi Leonel Rytter;Koll, IL;;;7;SC2-5
+G11KA2;8;429;Benjamin Olav Sammut;Heming, IL;;;8;SC2-7
+G11KA2;9;;-;-;;;9;
 ;;;;;;;
 KA3;;G11KA3;0,605555555555555;;;KA3;
-Pos;Nr;Navn ;Klubb;;Reskode;Plass;Videre til
-1;430;Teodor Nordal;Kjelsås IL;;;1;SA2-1
-2;431;Theo Mølmann-Sand;Lyn Ski;;;2;SA2-3
-3;432;Jone Haukvik-Jensen;Årvoll IL;;;3;SA2-5
-4;433;Ole Vislie;Røa IL;;;4;SA2-7
-5;434;Christian Berge Gjellestad;Koll, IL;;;5;SC3-1
-6;435;Noah Næss Lunde;Røa IL;;;6;SC3-3
-7;436;Erik Eiksund Øksnes;Kjelsås IL;;;7;SC3-5
-8;437;Alfred Gram-Knutsen Weisz;Kjelsås IL;;;8;SC3-7
-9;;-;-;;;9;
+Heat;Pos;Nr;Navn ;Klubb;;Reskode;Plass;Videre til
+G11KA3;1;430;Teodor Nordal;Kjelsås IL;;;1;SA2-1
+G11KA3;2;431;Theo Mølmann-Sand;Lyn Ski;;;2;SA2-3
+G11KA3;3;432;Jone Haukvik-Jensen;Årvoll IL;;;3;SA2-5
+G11KA3;4;433;Ole Vislie;Røa IL;;;4;SA2-7
+G11KA3;5;434;Christian Berge Gjellestad;Koll, IL;;;5;SC3-1
+G11KA3;6;435;Noah Næss Lunde;Røa IL;;;6;SC3-3
+G11KA3;7;436;Erik Eiksund Øksnes;Kjelsås IL;;;7;SC3-5
+G11KA3;8;437;Alfred Gram-Knutsen Weisz;Kjelsås IL;;;8;SC3-7
+G11KA3;9;;-;-;;;9;
 ;;;;;;;
-KA4;;G11KA4;0,606944444444444;;;KA4;
-Pos;Nr;Navn ;Klubb;;Reskode;Plass;Videre til
-1;438;Henrik Syrstad Føyen;Kjelsås IL;;;1;SA2-2
-2;439;Henrik Lohne Holm;Kjelsås IL;;;2;SA2-4
-3;440;Aslak Richard Frøyen Deely;Kjelsås IL;;;3;SA2-6
-4;441;Magnus Næsfeldt Heimdal;Kjelsås IL;;;4;SA2-8
-5;442;Brage Berge;Kjelsås IL;;;5;SC1-2
-6;443;Erlend Linnebo;Try, Idrettslaget;;;6;SC1-4
-7;444;Eskil Agledahl Otterstad;Kjelsås IL;;;7;SC1-6
-8;445;Aleksander Hallenstvedt Kjæreng;Kjelsås IL;;;8;SC1-8
-9;;-;-;;;9;
-;;;;;;;
-KA5;;G11KA5;0,608333333333333;;;KA5;
-Pos;Nr;Navn ;Klubb;;Reskode;Plass;Videre til
-1;446;Lars Nordbø;Asker Skiklubb;;;1;SA3-1
-2;447;Gustav Gran Røynås;Rustad IL;;;2;SA3-3
-3;448;Aksel Alvar Foss;Kjelsås IL;;;3;SA3-5
-4;449;Even Knoph Brenna;Grue IL;;;4;SA3-7
-5;450;Marcus Nyhuus;Kjelsås IL;;;5;SC2-2
-6;451;Aksel Andreas Lorang Dalbye;Moss Skiklubb;;;6;SC2-4
-7;452;Emil Storrø;Kjelsås IL;;;7;SC2-6
-8;453;Iver Fjeld Bjonviken;Årvoll IL;;;8;SC2-8
-9;;-;-;;;9;
-;;;;;;;
-KA6;;G11KA6;0,609722222222221;;;KA6;
-Pos;Nr;Navn ;Klubb;;Reskode;Plass;Videre til
-1;454;Jørgen Hasle;Kjelsås IL;;;1;SA3-2
-2;455;Albert Knoph Olsen;Kjelsås IL;;;2;SA3-4
-3;456;Oliver Benberg;Bækkelagets SK;;;3;SA3-6
-4;457;Jørgen Andreas Kristiansen Furfjord;Røa IL;;;4;SA3-8
-5;458;Viktor Tannæs-Fjeld;Rustad IL;;;5;SC3-2
-6;656;Sivert Fjeld Kristensen;Årvoll IL;;;6;SC3-4
-7;657;Erling Fjeld Kristensen;Årvoll IL;;;7;SC3-6
-8;659;Selma Amanda Hagfors Hättestrand;Lyn Ski;;;8;SC3-8
-9;;-;-;;;9;
 ;;;;;;;
 ;;;;;;;
 ;;;;;;;
