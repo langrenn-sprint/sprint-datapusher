@@ -46,6 +46,17 @@ def test_cli_with_url_arguments_and_directory_succeds(runner: CliRunner) -> None
             pytest.fail("Unexpected Exception")
 
 
+def test_convert_Kjoreplan_to_json() -> None:
+    """Should return correct json-representation."""
+    klasser_json = convert_csv_to_json("tests/files/Kjoreplan.csv", "kjoreplan")
+
+    with open("./tests/files/Kjoreplan.json") as json_file:
+        correct_json = json.load(json_file)
+
+    ddiff = DeepDiff(json.loads(klasser_json), correct_json, ignore_order=True)
+    assert ddiff == {}
+
+
 def test_convert_Klasser_to_json() -> None:
     """Should return correct json-representation."""
     klasser_json = convert_csv_to_json("tests/files/Klasser.csv", "klasser")

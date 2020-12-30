@@ -139,6 +139,9 @@ def convert_and_push_data(url: str, src_path: Any) -> None:
     """Convert file content to json and push to webserver at url."""
     datafile_type = ""
     _url = None
+    if src_path.split("/")[-1] == "Kjoreplan.csv":
+        _url = f"{url}/kjoreplan"
+        datafile_type = "kjoreplan"
     if src_path.split("/")[-1] == "Klasser.csv":
         _url = f"{url}/klasser"
         datafile_type = "klasser"
@@ -153,7 +156,7 @@ def convert_and_push_data(url: str, src_path: Any) -> None:
     if _url:
         body = convert_csv_to_json(src_path, datafile_type)
         headers = {"content-type": "application/json; charset=utf-8"}
-        logging.debug(f"sending body {body}")
+        logging.info(f"sending body {body}")
         try:
             response = requests.post(_url, headers=headers, data=body)
             if response.status_code == 201:
@@ -170,6 +173,17 @@ def convert_and_push_data(url: str, src_path: Any) -> None:
 
 def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     """Convert content of csv file to json."""
+    # Kjoreplan.csv:
+    if datafile_type == "kjoreplan":
+        # read the csv into a dataframe, and skip the first row:
+        df = pd.read_csv(src_path, sep=";", encoding="utf-8")
+        # drops the first row:
+        df = df.iloc[1:]
+        # drop all rows with no value in (Heat) Index:
+        df.dropna(subset=["Index"], inplace=True)
+        # drop columns with no values:
+        df.dropna(how="all", axis="columns", inplace=True)
+
     # Klasser.csv:
     if datafile_type == "klasser":
         # read the csv into a dataframe, and skip the first row:
