@@ -197,8 +197,8 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     if datafile_type == "start":
         # read the csv into a dataframe, and skip the first two rows:
         df = pd.read_csv(src_path, sep=";", skiprows=2, encoding="utf-8")
-        # drops the first row:
-        df = df.iloc[1:]
+        # drop "headers" pr heat, i.e. rows with value "Heat" in column "Heat":
+        df = df[df["Heat"] != "Heat"]
         # drop all rows with no value in Pos:
         df.dropna(subset=["Pos"], inplace=True)
     # Deltakerliste:

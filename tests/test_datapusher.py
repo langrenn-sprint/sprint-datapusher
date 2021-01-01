@@ -76,8 +76,8 @@ def test_convert_Start_to_json() -> None:
         correct_json = json.load(json_file)
 
     ddiff = DeepDiff(json.loads(start_json), correct_json, ignore_order=True)
-    if ddiff != {}:
-        print(json.dumps(ddiff, indent=4, sort_keys=True))
+    # if ddiff != {}:
+    #     print(json.dumps(ddiff, indent=4, sort_keys=True))
     assert ddiff == {}
 
 
