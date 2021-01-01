@@ -1,9 +1,29 @@
 # datapusher
 
-Overvåker folder og sender data i nye/endrede filer som json til webserver.
+Overvåker folder og sender data i nye/endrede filer som json til sprint-webserver.
 
 ## Overvåke folder for endringer i filer
-TBD
+```
+% pip install sprint-datapusher
+% sprint_datapusher --help                                 
+Usage: sprint_datapusher [OPTIONS] URL
+
+  CLI for monitoring directory and send content of files as json to
+  webserver URL.
+
+  URL is the url to a webserver exposing an endpoint accepting your json.
+
+  To stop the datapusher, press Control-C.
+
+Options:
+  --version                  Show the version and exit.
+  -d, --directory DIRECTORY  Relative path to the directory to watch
+                             [default: /home/stigbd/src/heming-
+                             langrenn/sprint-excel/datapusher]
+
+  -h, --help                 Show this message and exit.
+
+```
 
 ## Development
 ### Requirements
