@@ -48,12 +48,12 @@ def test_cli_with_url_arguments_and_directory_succeds(runner: CliRunner) -> None
 
 def test_convert_Kjoreplan_to_json() -> None:
     """Should return correct json-representation."""
-    klasser_json = convert_csv_to_json("tests/files/Kjoreplan.csv", "kjoreplan")
+    kjoreplan_json = convert_csv_to_json("tests/files/Kjoreplan.csv", "kjoreplan")
 
     with open("./tests/files/Kjoreplan.json") as json_file:
         correct_json = json.load(json_file)
 
-    ddiff = DeepDiff(json.loads(klasser_json), correct_json, ignore_order=True)
+    ddiff = DeepDiff(json.loads(kjoreplan_json), correct_json, ignore_order=True)
     assert ddiff == {}
 
 
@@ -70,12 +70,12 @@ def test_convert_Klasser_to_json() -> None:
 
 def test_convert_Start_to_json() -> None:
     """Should return correct json-representation of startlist."""
-    klasser_json = convert_csv_to_json("tests/files/G11KvartStart.csv", "start")
+    start_json = convert_csv_to_json("tests/files/G11KvartStart.csv", "start")
 
     with open("./tests/files/G11KvartStart.json") as json_file:
         correct_json = json.load(json_file)
 
-    ddiff = DeepDiff(json.loads(klasser_json), correct_json, ignore_order=True)
+    ddiff = DeepDiff(json.loads(start_json), correct_json, ignore_order=True)
     if ddiff != {}:
         print(json.dumps(ddiff, indent=4, sort_keys=True))
     assert ddiff == {}

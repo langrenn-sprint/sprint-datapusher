@@ -177,8 +177,6 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     if datafile_type == "kjoreplan":
         # read the csv into a dataframe, and skip the first row:
         df = pd.read_csv(src_path, sep=";", encoding="utf-8")
-        # drops the first row:
-        df = df.iloc[1:]
         # drop all rows with no value in (Heat) Index:
         df.dropna(subset=["Index"], inplace=True)
         # drop columns with no values:
