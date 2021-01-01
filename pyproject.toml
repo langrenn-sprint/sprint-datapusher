@@ -1,9 +1,17 @@
 [tool.poetry]
 name = "sprint-datapusher"
-version = "0.1.0-alpha.0"
+version = "0.1.0-alpha.1"
 description = "A tool to read csv files, transform to json and push to sprint_excel_webserver."
-authors = ["Stig B. Dørmænen <stigbd@gmail.com>"]
+authors = ["Stig B. Dørmænen <stigbd@gmail.com>", "Heming Harnæs <heming.harnaes@gmail.com"]
 license = "Apache-2.0"
+readme = "README.md"
+homepage = "https://github.com/heming-langrenn/sprint-excel/tree/main/datapusher"
+repository = "https://github.com/heming-langrenn/sprint-excel"
+classifiers=[
+      "Programming Language :: Python :: 3",
+      "License :: OSI Approved :: Apache Software License",
+      "Operating System :: OS Independent",
+      ]
 
 [tool.poetry.dependencies]
 python = "^3.7"
