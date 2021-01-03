@@ -88,7 +88,7 @@ def test_convert_ResultatHeat_to_json() -> None:
 
     ddiff = DeepDiff(json.loads(start_json), correct_json, ignore_order=True)
     if ddiff != {}:
-         print(json.dumps(ddiff, indent=4, sort_keys=True))
+        print(json.dumps(ddiff, indent=4, sort_keys=True))
     assert ddiff == {}
 
 
