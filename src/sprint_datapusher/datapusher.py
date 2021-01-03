@@ -137,26 +137,7 @@ class EventHandler(FileSystemEventHandler):
 
 def convert_and_push_data(url: str, src_path: Any) -> None:
     """Convert file content to json and push to webserver at url."""
-    datafile_type = ""
-    _url = None
-    if src_path.split("/")[-1] == "Deltakere.csv":
-        _url = f"{url}/deltakere"
-        datafile_type = "deltakere"
-    if src_path.split("/")[-1] == "Kjoreplan.csv":
-        _url = f"{url}/kjoreplan"
-        datafile_type = "kjoreplan"
-    if src_path.split("/")[-1] == "Klasser.csv":
-        _url = f"{url}/klasser"
-        datafile_type = "klasser"
-    if "Res.csv" in src_path.split("/")[-1]:
-        _url = f"{url}/resultat/heat"
-        datafile_type = "resultat_heat"
-    if "Resultatliste.csv" in src_path.split("/")[-1]:
-        _url = f"{url}/resultat"
-        datafile_type = "resultat"
-    if "Start.csv" in src_path.split("/")[-1]:
-        _url = f"{url}/start"
-        datafile_type = "start"
+    _url, datafile_type = find_url_datafile_type(url, src_path)
     logging.debug(f"Server url: {_url} - datafile: {datafile_type}")
 
     if _url:
@@ -175,6 +156,31 @@ def convert_and_push_data(url: str, src_path: Any) -> None:
             logging.error(f"got exceptions {e}")
     else:
         logging.info(f"Ignoring event on file {src_path}")
+
+
+def find_url_datafile_type(url: str, src_path: str) -> tuple:
+    """Determine url and datafile_type based src_path."""
+    datafile_type = ""
+    _url = ""
+    if src_path.split("/")[-1] == "Deltakere.csv":
+        _url = f"{url}/deltakere"
+        datafile_type = "deltakere"
+    elif src_path.split("/")[-1] == "Kjoreplan.csv":
+        _url = f"{url}/kjoreplan"
+        datafile_type = "kjoreplan"
+    elif src_path.split("/")[-1] == "Klasser.csv":
+        _url = f"{url}/klasser"
+        datafile_type = "klasser"
+    elif "Res.csv" in src_path.split("/")[-1]:
+        _url = f"{url}/resultat/heat"
+        datafile_type = "resultat_heat"
+    elif "Resultatliste.csv" in src_path.split("/")[-1]:
+        _url = f"{url}/resultat"
+        datafile_type = "resultat"
+    elif "Start.csv" in src_path.split("/")[-1]:
+        _url = f"{url}/start"
+        datafile_type = "start"
+    return _url, datafile_type
 
 
 def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
