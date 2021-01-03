@@ -68,6 +68,30 @@ def test_convert_Klasser_to_json() -> None:
     assert ddiff == {}
 
 
+def test_convert_Resultat_to_json() -> None:
+    """Should return correct json-representation of list."""
+    start_json = convert_csv_to_json("tests/files/G14Resultatliste.csv", "resultat")
+
+    with open("./tests/files/G14Resultatliste.json") as json_file:
+        correct_json = json.load(json_file)
+
+    ddiff = DeepDiff(json.loads(start_json), correct_json, ignore_order=True)
+    assert ddiff == {}
+
+
+def test_convert_ResultatHeat_to_json() -> None:
+    """Should return correct json-representation of list."""
+    start_json = convert_csv_to_json("tests/files/G14KvartRes.csv", "resultat_heat")
+
+    with open("./tests/files/G14KvartRes.json") as json_file:
+        correct_json = json.load(json_file)
+
+    ddiff = DeepDiff(json.loads(start_json), correct_json, ignore_order=True)
+    if ddiff != {}:
+         print(json.dumps(ddiff, indent=4, sort_keys=True))
+    assert ddiff == {}
+
+
 def test_convert_Start_to_json() -> None:
     """Should return correct json-representation of startlist."""
     start_json = convert_csv_to_json("tests/files/G11KvartStart.csv", "start")

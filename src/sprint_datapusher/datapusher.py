@@ -139,18 +139,24 @@ def convert_and_push_data(url: str, src_path: Any) -> None:
     """Convert file content to json and push to webserver at url."""
     datafile_type = ""
     _url = None
+    if src_path.split("/")[-1] == "Deltakere.csv":
+        _url = f"{url}/deltakere"
+        datafile_type = "deltakere"
     if src_path.split("/")[-1] == "Kjoreplan.csv":
         _url = f"{url}/kjoreplan"
         datafile_type = "kjoreplan"
     if src_path.split("/")[-1] == "Klasser.csv":
         _url = f"{url}/klasser"
         datafile_type = "klasser"
+    if "Res.csv" in src_path.split("/")[-1]:
+        _url = f"{url}/resultat/heat"
+        datafile_type = "resultat_heat"
+    if "Resultatliste.csv" in src_path.split("/")[-1]:
+        _url = f"{url}/resultat"
+        datafile_type = "resultat"
     if "Start.csv" in src_path.split("/")[-1]:
         _url = f"{url}/start"
         datafile_type = "start"
-    if src_path.split("/")[-1] == "Deltakere.csv":
-        _url = f"{url}/deltakere"
-        datafile_type = "deltakere"
     logging.debug(f"Server url: {_url} - datafile: {datafile_type}")
 
     if _url:
@@ -173,6 +179,16 @@ def convert_and_push_data(url: str, src_path: Any) -> None:
 
 def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     """Convert content of csv file to json."""
+    if datafile_type == "deltakere":
+        # read the csv into a dataframe, and skip the first row:
+        df = pd.read_csv(src_path, sep=";", dtype=str, encoding="utf-8")
+        # drops the first row:
+        df = df.iloc[1:]
+        # drop all rows with no value in Klasse:
+        df.dropna(subset=["Startnr"], inplace=True)
+        # drop columns with no values:
+        df.dropna(how="all", axis="columns", inplace=True)
+
     # Kjoreplan.csv:
     if datafile_type == "kjoreplan":
         # read the csv into a dataframe, and skip the first row:
@@ -193,6 +209,20 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
         # drop columns with no values:
         df.dropna(how="all", axis="columns", inplace=True)
 
+    # Resultat heat:
+    if datafile_type == "resultat_heat":
+        # read the csv into a dataframe, and skip the first two rows:
+        df = pd.read_csv(src_path, sep=";", skiprows=2, encoding="utf-8")
+        # drop all rows with no value in Plass:
+        df.dropna(subset=["Plass"], inplace=True)
+
+    # Resultatliste:
+    if datafile_type == "resultat":
+        # read the csv into a dataframe, and skip the first row:
+        df = pd.read_csv(src_path, sep=";", skiprows=1, encoding="utf-8")
+        # drop all rows with no value in Plass:
+        df.dropna(subset=["Plass"], inplace=True)
+
     # Startlists:
     if datafile_type == "start":
         # read the csv into a dataframe, and skip the first two rows:
@@ -201,16 +231,6 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
         df = df[df["Heat"] != "Heat"]
         # drop all rows with no value in Pos:
         df.dropna(subset=["Pos"], inplace=True)
-    # Deltakerliste:
-    if datafile_type == "deltakere":
-        # read the csv into a dataframe, and skip the first row:
-        df = pd.read_csv(src_path, sep=";", dtype=str, encoding="utf-8")
-        # drops the first row:
-        df = df.iloc[1:]
-        # drop all rows with no value in Klasse:
-        df.dropna(subset=["Startnr"], inplace=True)
-        # drop columns with no values:
-        df.dropna(how="all", axis="columns", inplace=True)
 
     # For all types of files:
     # reset index:
