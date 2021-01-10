@@ -165,6 +165,9 @@ def find_url_datafile_type(url: str, src_path: str) -> tuple:
     if src_path.split("/")[-1] == "Deltakere.csv":
         _url = f"{url}/deltakere"
         datafile_type = "deltakere"
+    elif src_path.split("/")[-1] == "Innstillinger.csv":
+        _url = f"{url}/innstillinger"
+        datafile_type = "innstillinger"
     elif src_path.split("/")[-1] == "Kjoreplan.csv":
         _url = f"{url}/kjoreplan"
         datafile_type = "kjoreplan"
@@ -190,8 +193,16 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
         df = pd.read_csv(src_path, sep=";", dtype=str, encoding="utf-8")
         # drops the first row:
         df = df.iloc[1:]
-        # drop all rows with no value in Klasse:
+        # drop all rows with no value:
         df.dropna(subset=["Startnr"], inplace=True)
+        # drop columns with no values:
+        df.dropna(how="all", axis="columns", inplace=True)
+
+    if datafile_type == "innstillinger":
+        # read the csv into a dataframe, and skip the first row:
+        df = pd.read_csv(src_path, sep=";", dtype=str, encoding="utf-8")
+        # drop all rows with no value:
+        df.dropna(subset=["Parameter"], inplace=True)
         # drop columns with no values:
         df.dropna(how="all", axis="columns", inplace=True)
 
@@ -241,5 +252,6 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     # For all types of files:
     # reset index:
     df.reset_index(drop=True, inplace=True)
+    logging.debug(df.to_json(orient="records", force_ascii=True))
     # convert dataframe to json and return:
     return df.to_json(orient="records", force_ascii=True)
