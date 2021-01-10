@@ -1,8 +1,6 @@
 name: Tests datapusher
 on:
-  push:
-    paths:
-      - datapusher/**
+  push
 
 defaults:
   run:
