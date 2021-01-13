@@ -190,7 +190,7 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     """Convert content of csv file to json."""
     if datafile_type == "deltakere":
         # read the csv into a dataframe, and skip the first row:
-        df = pd.read_csv(src_path, sep=";", dtype=str, encoding="utf-8")
+        df = pd.read_csv(src_path, sep=";", encoding="utf-8", dtype=str)
         # drops the first row:
         df = df.iloc[1:]
         # drop all rows with no value:
@@ -200,7 +200,7 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
 
     if datafile_type == "innstillinger":
         # read the csv into a dataframe, and skip the first row:
-        df = pd.read_csv(src_path, sep=";", dtype=str, encoding="utf-8")
+        df = pd.read_csv(src_path, sep=";", encoding="utf-8", dtype=str)
         # drop all rows with no value:
         df.dropna(subset=["Parameter"], inplace=True)
         # drop columns with no values:
@@ -209,7 +209,7 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     # Kjoreplan.csv:
     if datafile_type == "kjoreplan":
         # read the csv into a dataframe, and skip the first row:
-        df = pd.read_csv(src_path, sep=";", encoding="utf-8")
+        df = pd.read_csv(src_path, sep=";", encoding="utf-8", dtype=str)
         # drop all rows with no value in (Heat) Index:
         df.dropna(subset=["Index"], inplace=True)
         # drop columns with no values:
@@ -218,7 +218,7 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     # Klasser.csv:
     if datafile_type == "klasser":
         # read the csv into a dataframe, and skip the first row:
-        df = pd.read_csv(src_path, sep=";", encoding="utf-8")
+        df = pd.read_csv(src_path, sep=";", encoding="utf-8", dtype=str)
         # drops the first row:
         df = df.iloc[1:]
         # drop all rows with no value in Klasse:
@@ -229,21 +229,21 @@ def convert_csv_to_json(src_path: str, datafile_type: str) -> str:
     # Resultat heat:
     if datafile_type == "resultat_heat":
         # read the csv into a dataframe, and skip the first two rows:
-        df = pd.read_csv(src_path, sep=";", skiprows=2, encoding="utf-8")
+        df = pd.read_csv(src_path, sep=";", skiprows=2, encoding="utf-8", dtype=str)
         # drop all rows with no value in Plass:
         df.dropna(subset=["Plass"], inplace=True)
 
     # Resultatliste:
     if datafile_type == "resultat":
         # read the csv into a dataframe, and skip the first row:
-        df = pd.read_csv(src_path, sep=";", skiprows=1, encoding="utf-8")
+        df = pd.read_csv(src_path, sep=";", skiprows=1, encoding="utf-8", dtype=str)
         # drop all rows with no value in Plass:
         df.dropna(subset=["Plass"], inplace=True)
 
     # Startlists:
     if datafile_type == "start":
         # read the csv into a dataframe, and skip the first two rows:
-        df = pd.read_csv(src_path, sep=";", skiprows=2, encoding="utf-8")
+        df = pd.read_csv(src_path, sep=";", skiprows=2, encoding="utf-8", dtype=str)
         # drop "headers" pr heat, i.e. rows with value "Heat" in column "Heat":
         df = df[df["Heat"] != "Heat"]
         # drop all rows with no value in Pos:
