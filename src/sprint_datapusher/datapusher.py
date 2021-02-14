@@ -58,7 +58,7 @@ def cli(url: str, directory: Any) -> None:
         exit(2)
 
     monitor = FileSystemMonitor(directory=directory, url=url)
-    monitor.start(loop_action=lambda: time.sleep(1))
+    monitor.start(loop_action=lambda: time.sleep(1))  # Waits 1 second
 
     click.echo("Bye!\n")
 
@@ -162,25 +162,25 @@ def find_url_datafile_type(url: str, src_path: str) -> tuple:
     """Determine url and datafile_type based src_path."""
     datafile_type = ""
     _url = ""
-    if src_path.split("/")[-1] == "Deltakere.csv":
+    if src_path.split(os.path.sep)[-1] == "Deltakere.csv":
         _url = f"{url}/deltakere"
         datafile_type = "deltakere"
-    elif src_path.split("/")[-1] == "Innstillinger.csv":
+    elif src_path.split(os.path.sep)[-1] == "Innstillinger.csv":
         _url = f"{url}/innstillinger"
         datafile_type = "innstillinger"
-    elif src_path.split("/")[-1] == "Kjoreplan.csv":
+    elif src_path.split(os.path.sep)[-1] == "Kjoreplan.csv":
         _url = f"{url}/kjoreplan"
         datafile_type = "kjoreplan"
-    elif src_path.split("/")[-1] == "Klasser.csv":
+    elif src_path.split(os.path.sep)[-1] == "Klasser.csv":
         _url = f"{url}/klasser"
         datafile_type = "klasser"
-    elif "Res.csv" in src_path.split("/")[-1]:
+    elif "Res.csv" in src_path.split(os.path.sep)[-1]:
         _url = f"{url}/resultat/heat"
         datafile_type = "resultat_heat"
-    elif "Resultatliste.csv" in src_path.split("/")[-1]:
+    elif "Resultatliste.csv" in src_path.split(os.path.sep)[-1]:
         _url = f"{url}/resultat"
         datafile_type = "resultat"
-    elif "Start.csv" in src_path.split("/")[-1]:
+    elif "Start.csv" in src_path.split(os.path.sep)[-1]:
         _url = f"{url}/start"
         datafile_type = "start"
     return _url, datafile_type
