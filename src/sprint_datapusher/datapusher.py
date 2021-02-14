@@ -134,10 +134,10 @@ def convert_and_push_data(url: str, src_path: Any) -> None:
     logging.debug(f"Server url: {_url} - datafile: {datafile_type}")
 
     if _url:
-        body = convert_csv_to_json(src_path, datafile_type)
-        headers = {"content-type": "application/json; charset=utf-8"}
-        logging.debug(f"sending body {body}")
         try:
+            body = convert_csv_to_json(src_path, datafile_type)
+            headers = {"content-type": "application/json; charset=utf-8"}
+            logging.debug(f"sending body {body}")
             response = requests.post(_url, headers=headers, data=body)
             if response.status_code == 201:
                 logging.debug(
