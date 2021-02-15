@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "sprint-datapusher"
 version = "0.1.2"
-description = "A tool to read csv files, transform to json and push to sprint_excel_webserver."
+description = "A tool to read csv files, transform to json and push to sprint-webserver."
 authors = ["Stig B. Dørmænen <stigbd@gmail.com>", "Heming Harnæs <heming.harnaes@gmail.com"]
 license = "Apache-2.0"
 readme = "README.md"
