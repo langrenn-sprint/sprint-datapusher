@@ -1,4 +1,5 @@
-# datapusher
+[![PyPI](https://img.shields.io/pypi/v/sprint-datapusher.svg)](https://pypi.org/project/sprint-datapusher/)
+# sprint-datapusher
 
 Overvåker folder og sender data i nye/endrede filer som json til sprint-webserver.
 
