@@ -2,10 +2,14 @@
 
 Overvåker folder og sender data i nye/endrede filer som json til sprint-webserver.
 
+## Installere
+```
+% pip install --upgrade sprint-datapusher
+```
+
 ## Overvåke folder for endringer i filer
 
 ```
-% pip install sprint-datapusher
 % sprint_datapusher --help                                 
 Usage: sprint_datapusher [OPTIONS] URL
 

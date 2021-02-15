@@ -1,4 +1,4 @@
 - [x] Legg til ping sub-commando som sjekker om webserver er operativ.
 - [x] Bruk pandas til å lese csv og transformere til json
 - [ ] Lag tester som simulerer filsystem hendingar og test på resultatet av disse
-- [ ] Lag release som kan lastast ned via pypi (pip install sprint-datapusher)
+- [x] Lag release som kan lastast ned via pypi (pip install sprint-datapusher)
