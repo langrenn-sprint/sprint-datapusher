@@ -111,18 +111,13 @@ class EventHandler(FileSystemEventHandler):
         super(EventHandler, self).__init__()
         self.url = url
 
-    def on_any_event(self, event: FileSystemEvent) -> None:
-        """Handle any events primarily for logging."""
-        super(EventHandler, self).on_any_event(event)
-
-        what = "directory" if event.is_directory else "file"
-        logging.info(
-            f"{event.event_type} {what}: {event.src_path}",
-        )
-
     def on_modified(self, event: FileSystemEvent) -> None:
-        """Handle file modification events."""
-        super(EventHandler, self).on_modified(event)
+        """Handle any events primarily for logging."""
+        # super(EventHandler, self).on_any_event(event)
+
+        logging.info(
+            f"{event.event_type} : {event.src_path}",
+        )
 
         if not event.is_directory:
             convert_and_push_data(self.url, event.src_path)
